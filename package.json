@@ -1,0 +1,52 @@
+{
+  "name": "encontrar-raizes",
+  "version": "0.0.0",
+  "description": "encontrar-raizes",
+  "main": "index.js",
+  "scripts": {
+    "gulp": "gulp",
+    "build": "gulp build",
+    "test": "mocha",
+    "start": "npm run gulp browser-sync",
+    "karma": "karma",
+    "modularize": "gulp modularize",
+    "replace-env": "gulp replace-env"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emanoelvianna/encontrar-raizes"
+  },
+  "author": "emanoelvianna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emanoelvianna/encontrar-raizes/issues"
+  },
+  "homepage": "https://github.com/emanoelvianna/encontrar-raizes/README.md",
+  "dependencies": {
+    "angular": "1.5.8",
+    "angular-animate": "1.5.8",
+    "angular-aria": "1.5.8",
+    "angular-bind-html-compile-ci-dev": "1.1.1",
+    "angular-immutable": "0.1.2",
+    "angular-material": "1.1.1",
+    "angular-material-icons": "0.6.0",
+    "angular-messages": "1.5.8",
+    "angular-resource": "1.5.5",
+    "angular-ui-mask": "^1.8.3",
+    "angular-ui-router": "^0.3.1",
+    "browser-sync": "2.11.2",
+    "browser-sync-middleware-spa": "^1.0.0",
+    "function-plot": "^1.18.1",
+    "gulp": "^3.9.1",
+    "gulp-bump": "2.1.0",
+    "gulp-concat": "2.6.0",
+    "gulp-minify": "0.0.11",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace-task": "0.11.0",
+    "gulp-sonar": "2.1.0",
+    "gulp-uglify": "^1.5.1",
+    "gulp-useref": "^3.0.4",
+    "mathjs": "5.0.0",
+    "mocha": "^3.1.0"
+  }
+}
