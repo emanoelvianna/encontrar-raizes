@@ -14,33 +14,32 @@
         self.bisection = bisection;
 
         function bisection(equation, a, b, tolerance) {
-            self.equation = equation;
+            let epsilon = 0.00001;
             let interaction = 0;
-            var result = {};
+            let midpoint = 0;
+            self.equation = equation;
 
-            while (tolerance > interaction) {
-                var midpoint = math.eval((a + b) / 2);
+            while (interaction < tolerance) {
+                midpoint = math.eval((a + b) / 2);
+                let y_m = solve(midpoint);
+                let y_a = solve(a);
 
-                let resultSolve = solve(midpoint);
-                if (resultSolve < 0) {
-                    a = midpoint;
-                    result.a = a;
-                } else {
+                if ((y_m > 0 && y_a < 0) || (y_m < 0 && y_a > 0)) {
                     b = midpoint;
-                    result.b = b;
+                } else {
+                    a = midpoint;
                 }
-
-                result.equation = resultSolve;
-                result.value = math.eval((a + b) / 2);
                 interaction++;
+                console.log("n:" + interaction + " ; a:" + a + "; b:" + b + " ; x:" + midpoint + " ; f(x):" + y_m);
             }
-
-            //draw();
-            return result;
+            draw();
+            console.log("- Solução aproximada: ");
+            return midpoint;
         }
 
         function solve(value) {
-            return math.eval(self.equation.replace(/[a-zA-Z]+/g, value));
+            let newEquation = self.equation.replace(/[xy]+/g, value);
+            return math.eval(newEquation);
         }
 
         function draw() {

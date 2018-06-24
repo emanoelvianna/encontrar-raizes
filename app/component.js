@@ -27,7 +27,6 @@
             let tolerance = Number(parameters.tolerance);
 
             self.solved = bisectionService.bisection(equation, a, b, tolerance);
-            console.log(self.solved);
         }
 
         function clear() {
