@@ -1,16 +1,13 @@
-var newEquation;
-
 function bisection(equation, a, b, tolerance) {
     let epsilon = 0.00001;
     let interaction = 0;
     let midpoint = 0;
     let results = [];
-    newEquation = equation;
 
     while ((b - a) > epsilon) {
         midpoint = math.eval((a + b) / 2);
-        let y_m = solve(midpoint);
-        let y_a = solve(a);
+        let y_m = solve(midpoint, equation);
+        let y_a = solve(a, equation);
 
         if ((y_m > 0 && y_a < 0) || (y_m < 0 && y_a > 0)) {
             b = midpoint;
@@ -28,12 +25,16 @@ function bisection(equation, a, b, tolerance) {
         }
         results.push(result);
     }
-    draw(results);
+    drawTable(results);
     console.log("- Solução aproximada: ");
     return midpoint;
 }
 
-function draw(results) {
+function solve(value, equation) {
+    return math.eval(equation.replace(/[xy]+/g, value));
+}
+
+function drawTable(results) {
     let table = document.getElementById("myTable");
     table.innerHTML = "";
     let row;
@@ -42,18 +43,18 @@ function draw(results) {
     results.filter(function(result) {
         row = table.insertRow(0);
         row.insertCell(0).appendChild(document.createTextNode(result.n));
-        row.insertCell(1).appendChild(document.createTextNode(result.a));
-        row.insertCell(2).appendChild(document.createTextNode(result.b));
-        row.insertCell(3).appendChild(document.createTextNode(result.f));
+        row.insertCell(1).appendChild(document.createTextNode(result.x));
+        row.insertCell(2).appendChild(document.createTextNode(result.f));
     });
     row = table.insertRow(0);
     row.insertCell(0).appendChild(document.createTextNode("n"));
-    row.insertCell(1).appendChild(document.createTextNode("a"));
-    row.insertCell(2).appendChild(document.createTextNode("b"));
-    row.insertCell(3).appendChild(document.createTextNode("f(x)"));
+    row.insertCell(1).appendChild(document.createTextNode("x"));
+    row.insertCell(2).appendChild(document.createTextNode("f(x)"));
+}
 
+function drawGraph(equation) {
     try {
-        const expr = math.compile(newEquation)
+        const expr = math.compile(equation)
 
         const xValues = math.range(-10, 10, 0.5).toArray()
         const yValues = xValues.map(function(x) {
@@ -70,8 +71,4 @@ function draw(results) {
     } catch (err) {
         console.error(err)
     }
-}
-
-function solve(value) {
-    return math.eval(newEquation.replace(/[xy]+/g, value));
 }
